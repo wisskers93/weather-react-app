@@ -9,13 +9,17 @@ const API_KEY = "3d790876479461764d53a954986abf1d";
 
 class WeatherApp extends React.Component {
   state ={
-    temperature: undefined,
-    state: undefined,
-    city: undefined,
-    humidity: undefined,
-    description: undefined,
-    error: undefined
+    state: "",
+    city: "",
+    forecastCard: "",
+    temperature: "",
+    humidity: "",
+    description: "",
+    icon: "",
+    error: ""
+    
   }
+
 
   getWeather = async (e) => {
     e.preventDefault();
@@ -31,16 +35,19 @@ class WeatherApp extends React.Component {
       state: stateInUsa,
       humidity: data.main.humidity,
       description: data.weather[0].description,
+      icon: data.weather[0].icon,
       error: ""
      });
     } else {
     console.log(data); 
     this.setState({
-      temperature: undefined,
-      city:undefined,
-      state:undefined,
-      humidity: undefined,
-      description: undefined,
+      temperature: "",
+      city:"",
+      state:"",
+      humidity: "",
+      description: "",
+      forecastCard: "",
+      icon: "",
       error: "Please Enter the Full Names of the City and State"
      });
     }
@@ -53,14 +60,16 @@ class WeatherApp extends React.Component {
         <Titles />
         <Form getWeather={this.getWeather} />
         <Weather 
-        temperature={this.state.temperature} 
         city={this.state.city}
         state={this.state.state}
-        humidity={this.state.humidity}
-        description={this.state.description}
         error={this.state.error}
         />
-        <ForecastCards />
+        <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`}/>
+        <ForecastCards 
+        temperature={this.state.temperature} 
+        humidity={this.state.humidity}
+        description={this.state.description}        
+        />
       </div>
     );
   }

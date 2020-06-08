@@ -6,12 +6,12 @@ class ForecastCards extends React.Component{
     render(){
         return(
             <Card style={{ width: '10rem' }}>
-                <Card.Img variant="top" height="100em" src="https://cdn1.iconfinder.com/data/icons/weather-forecast-16/64/wheather_forecast_weather-hot-season-sun-forecast-sunshine-meteorology-512.png" />
+                {/* <Card.Img variant="top" height="100em" src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`}/> */}
                     <Card.Body>
-                        <Card.Title>Card Title</Card.Title>
+                        <Card.Title>{this.props.temperature}</Card.Title>
                         <Card.Text>
-                        Some quick example text to build on the card title and make up the bulk of
-                        the card's content.
+                        { this.props.humidity &&  <p>Humidity: { this.props.humidity }</p>}
+                        { this.props.description }
                         </Card.Text>
                     </Card.Body>
             </Card>
