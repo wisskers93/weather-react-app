@@ -2,6 +2,8 @@ import React from "react";
 import Titles from "./components/Titles";
 import Form from "./components/Form";
 import Weather from "./components/Weather";
+import ForecastCards from "./components/Forecast-Cards";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const API_KEY = "3d790876479461764d53a954986abf1d";
 
@@ -58,6 +60,7 @@ class WeatherApp extends React.Component {
         description={this.state.description}
         error={this.state.error}
         />
+        <ForecastCards />
       </div>
     );
   }
