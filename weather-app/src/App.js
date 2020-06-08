@@ -64,8 +64,8 @@ class WeatherApp extends React.Component {
         state={this.state.state}
         error={this.state.error}
         />
-        <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`}/>
         <ForecastCards 
+        icon={this.state.icon}
         temperature={this.state.temperature} 
         humidity={this.state.humidity}
         description={this.state.description}        
