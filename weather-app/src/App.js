@@ -4,8 +4,12 @@ import Form from "./components/Form";
 import Weather from "./components/Weather";
 import ForecastCards from "./components/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
+
 
 const API_KEY = "3d790876479461764d53a954986abf1d";
+const date = new Date();
+const time = date.getHours();
 
 class WeatherApp extends React.Component {
   state ={
@@ -16,17 +20,30 @@ class WeatherApp extends React.Component {
     humidity: "",
     description: "",
     icon: "",
-    error: ""
-    
+    error: "",
+    isItDaytime: ""
   }
 
+  
+  componentDidMount() {
+    if (time <19 && time >6){
+        this.setState({
+          isItDaytime: true
+        });
+      } else {
+        this.setState({
+          isItDaytime: false
+        });
+      }
+  }
 
   getWeather = async (e) => {
     e.preventDefault();
     const city = e.target.elements.city.value;
     const stateInUsa = e.target.elements.state.value;
     const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${stateInUsa}&units=imperial&appid=${API_KEY}`)
-    const data = await api_call.json();
+    const data = await api_call.json();  
+    
     if (city && stateInUsa){
     console.log(data); 
     this.setState({
@@ -56,7 +73,7 @@ class WeatherApp extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className= {this.state.isItDaytime ? 'background-day' : 'background-night'} >
         <Titles />
         <Form getWeather={this.getWeather} />
         <Weather 
