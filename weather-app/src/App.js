@@ -21,7 +21,8 @@ class WeatherApp extends React.Component {
     description: "",
     icon: "",
     error: "",
-    isItDaytime: ""
+    isItDaytime: "",
+    showCard: false
   }
 
   
@@ -53,7 +54,8 @@ class WeatherApp extends React.Component {
       humidity: data.main.humidity,
       description: data.weather[0].description,
       icon: data.weather[0].icon,
-      error: ""
+      error: "",
+      showCard:true
      });
     } else {
     console.log(data); 
@@ -81,12 +83,14 @@ class WeatherApp extends React.Component {
         state={this.state.state}
         error={this.state.error}
         />
-        <ForecastCards 
+        <div className= {this.state.showCard ? 'show-card' : 'no-card'}>
+        <ForecastCards
         icon={this.state.icon}
         temperature={this.state.temperature} 
         humidity={this.state.humidity}
         description={this.state.description}        
         />
+        </div>
       </div>
     );
   }

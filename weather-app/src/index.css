@@ -1,10 +1,20 @@
 
 .background-day {
-  background-image: url('https://i.pinimg.com/originals/fc/e0/e7/fce0e7e85fbb719325f9d029580e6294.jpg');
-  
+  background-image: url('https://i.imgur.com/5LaaFse.jpg');
+  height: 100vh;
+  background-size: cover;
 }
 
 .background-night {
-  background-image: url('https://i.pinimg.com/originals/78/b5/89/78b5898ae3583c15215df76651c7fada.webp'); 
-  ;
+  background-image: url('https://external-preview.redd.it/JRbrwhI6yMhJiomdFCNJn6IH399Uo7SbHusOnXT8-uM.jpg?auto=webp&s=12a668dff56e9993dd27065ae673189b37189084'); 
+  height: 100vh;
+}
+
+.show-card {
+  color: darkcyan;
+  display: inline;
+}
+
+.no-card {
+  display: none;
 }
