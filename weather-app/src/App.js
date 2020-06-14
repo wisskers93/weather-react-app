@@ -43,7 +43,7 @@ class WeatherApp extends React.Component {
     e.preventDefault();
     const city = e.target.elements.city.value;
     const stateInUsa = e.target.elements.state.value;
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${stateInUsa}&units=imperial&appid=${API_KEY}`)
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${stateInUsa}&units=imperial&appid=${API_KEY}`)
     const data = await api_call.json();  
     
     if (city && stateInUsa){
