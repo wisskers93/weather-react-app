@@ -10,7 +10,7 @@ class ForecastCards extends React.Component{
         return(
             <div>
             <Card style={{ width: '10rem' }}>
-                <Card.Img variant="top" height="100em" src={`http://openweathermap.org/img/wn/${this.props.icon}@2x.png`}/>
+                <Card.Img variant="top" height="100em" src={`https://openweathermap.org/img/wn/${this.props.icon}@2x.png`}/>
                     <Card.Body>
                         <Card.Title>{this.props.temperature}</Card.Title>
                         <Card.Text>
