@@ -3,9 +3,7 @@ import Card from 'react-bootstrap/card';
 
 class ForecastCards extends React.Component{
 
-     
-
-
+    
     render(){
         return(
             <div>

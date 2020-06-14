@@ -1,6 +1,6 @@
 import React from "react";
 import Titles from "./components/Titles";
-import Form from "./components/Form";
+import Form from "./components/Form-Folder/Form";
 import Weather from "./components/Weather";
 import ForecastCards from "./components/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,7 +14,7 @@ const time = date.getHours();
 
 class WeatherApp extends React.Component {
   state ={
-    state: "",
+    
     city: "",
     forecastCard: "",
     temperature: "",
@@ -41,19 +41,20 @@ class WeatherApp extends React.Component {
 
   getWeather = async (e) => {
     e.preventDefault();
-    const city = e.target.elements.city.value;
-    const stateInUsa = e.target.elements.state.value;
-    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city},${stateInUsa}&units=imperial&appid=${API_KEY}`)
-    const data = await api_call.json();  
+    const zipCode = e.target.elements.zip.value;
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${API_KEY}`)
+    const data = await api_call.json();
     
-    if (city && stateInUsa){
+    
+    
+    if (zipCode){
     console.log(data); 
+    
     this.setState({
-      temperature: data.main.temp,
+      temperature: Math.round(data.main.temp),
       city: data.name,
-      state: stateInUsa,
       humidity: data.main.humidity,
-      description: data.weather[0].description,
+      description:data.weather[0].description,
       icon: data.weather[0].icon,
       error: "",
       showCard:true
@@ -63,12 +64,11 @@ class WeatherApp extends React.Component {
     this.setState({
       temperature: "",
       city:"",
-      state:"",
       humidity: "",
       description: "",
       forecastCard: "",
       icon: "",
-      error: "Please Enter the Full Names of the City and State"
+      error: "Please Enter a Valid Zip Code"
      });
     }
   }
@@ -81,7 +81,7 @@ class WeatherApp extends React.Component {
         <Form getWeather={this.getWeather} />
         <Weather 
         city={this.state.city}
-        state={this.state.state}
+       
         error={this.state.error}
         />
         <div className= {this.state.showCard ? 'show-card' : 'no-card'}>
