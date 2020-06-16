@@ -6,6 +6,7 @@ import ForecastCards from "./components/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Radar from "./components/Radar.js";
+import Fade from 'react-reveal/Fade';
 
 
 const API_KEY = "3d790876479461764d53a954986abf1d";
@@ -97,17 +98,20 @@ class WeatherApp extends React.Component {
                 error={this.state.error}
                 />
             </div>
-            <div className="text-box-right">
-                  <div className= {this.state.showCard ? 'show-card' : 'no-card'}>
-                  <ForecastCards
-                  icon={this.state.icon}
-                  temperature={this.state.temperature} 
-                  humidity={this.state.humidity}
-                  description={this.state.description}        
-                  />
-                  <Radar />
-                  </div>
+            <Fade right>
+              <div className={this.state.showCard ? 'show-card' : 'no-card'}>
+                    <div>
+                    <ForecastCards
+                    icon={this.state.icon}
+                    temperature={this.state.temperature} 
+                    humidity={this.state.humidity}
+                    description={this.state.description}        
+                    />
+                    <Radar />
+                    </div>
               </div>
+           </Fade>
+          
            </div>
       </div>
     );

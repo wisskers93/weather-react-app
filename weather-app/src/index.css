@@ -14,19 +14,17 @@
 .show-card {
   color: darkcyan;
   display: inline;
-}
-
-.no-card {
-  display: none;
-}
-
-.text-box-right {
   float:left;
   background:rgba(28, 27, 36, 0.9);
   width: 50%;
   height: 100vw;
   align-content: center;
 }
+
+.no-card {
+  display: none;
+}
+
 
 .text-box-left{
   float: left;
