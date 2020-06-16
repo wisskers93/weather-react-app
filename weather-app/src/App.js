@@ -5,6 +5,7 @@ import Weather from "./components/Weather";
 import ForecastCards from "./components/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import Radar from "./components/Radar.js";
 
 
 const API_KEY = "3d790876479461764d53a954986abf1d";
@@ -14,7 +15,8 @@ const time = date.getHours();
 
 class WeatherApp extends React.Component {
   state ={
-    
+    lat: "",
+    long: "",
     city: "",
     forecastCard: "",
     temperature: "",
@@ -23,7 +25,8 @@ class WeatherApp extends React.Component {
     icon: "",
     error: "",
     isItDaytime: "",
-    showCard: false
+    showCard: false,
+    radar:""
   }
 
   
@@ -42,8 +45,11 @@ class WeatherApp extends React.Component {
   getWeather = async (e) => {
     e.preventDefault();
     const zipCode = e.target.elements.zip.value;
+    
     const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${API_KEY}`)
     const data = await api_call.json();
+    
+     
     
     
     
@@ -51,23 +57,28 @@ class WeatherApp extends React.Component {
     console.log(data); 
     
     this.setState({
+      lat: data.coord[1],
+      long: data.coord[0],
       temperature: Math.round(data.main.temp),
       city: data.name,
       humidity: data.main.humidity,
       description:data.weather[0].description,
       icon: data.weather[0].icon,
       error: "",
-      showCard:true
+      showCard:true,
      });
     } else {
     console.log(data); 
     this.setState({
+      lat: "",
+      long: "",
       temperature: "",
       city:"",
       humidity: "",
       description: "",
       forecastCard: "",
       icon: "",
+      radar: "",
       error: "Please Enter a Valid Zip Code"
      });
     }
@@ -91,6 +102,7 @@ class WeatherApp extends React.Component {
         humidity={this.state.humidity}
         description={this.state.description}        
         />
+        <Radar />
         </div>
       </div>
     );
