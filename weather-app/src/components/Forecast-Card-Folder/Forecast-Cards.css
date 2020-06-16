@@ -1,0 +1,42 @@
+.Forecast{
+    margin: 30px;
+    content: "";
+    display: table;
+    clear: both;
+      
+}
+
+.temp{
+    float: right;
+    width: 50%;
+}
+
+.icon{
+    float: left;
+  width: 50%;
+  
+ 
+}
+
+.number{
+    font-size: 10vmin;
+}
+
+iframe{
+    height: 50vmin;
+    width: 40vmin;
+}
+
+.radar-box{
+    margin-left: 5vmin;
+    margin-top: 10vmin;
+    
+}
+
+.small-text{
+    color: rgba(0, 128, 128, 0.74);
+}
+
+.large-text{
+    color: teal;
+}

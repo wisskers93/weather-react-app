@@ -1,10 +1,12 @@
 import React from "react";
-import Titles from "./components/Titles";
-import Form from "./components/Form";
-import Weather from "./components/Weather";
-import ForecastCards from "./components/Forecast-Cards";
+import Titles from "./components/Title-Folder/Titles";
+import Form from "./components/Form-Folder/Form";
+import Weather from "./components/Weather-Folder/Weather";
+import ForecastCards from "./components/Forecast-Card-Folder/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
+import Fade from 'react-reveal/Fade';
+import { auto } from "async";
 
 
 const API_KEY = "3d790876479461764d53a954986abf1d";
@@ -14,7 +16,8 @@ const time = date.getHours();
 
 class WeatherApp extends React.Component {
   state ={
-    state: "",
+    lat: "",
+    long: "",
     city: "",
     forecastCard: "",
     temperature: "",
@@ -23,7 +26,8 @@ class WeatherApp extends React.Component {
     icon: "",
     error: "",
     isItDaytime: "",
-    showCard: false
+    showCard: false,
+    radar:""
   }
 
   
@@ -41,34 +45,42 @@ class WeatherApp extends React.Component {
 
   getWeather = async (e) => {
     e.preventDefault();
-    const city = e.target.elements.city.value;
-    const stateInUsa = e.target.elements.state.value;
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city},${stateInUsa}&units=imperial&appid=${API_KEY}`)
-    const data = await api_call.json();  
+    const zipCode = e.target.elements.zip.value;
     
-    if (city && stateInUsa){
+    const api_call = await fetch(`https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${API_KEY}`)
+    const data = await api_call.json();
+    
+     
+    
+    
+    
+    if (zipCode){
     console.log(data); 
+    
     this.setState({
-      temperature: data.main.temp,
+      lat: data.coord[1],
+      long: data.coord[0],
+      temperature: Math.round(data.main.temp),
       city: data.name,
-      state: stateInUsa,
       humidity: data.main.humidity,
-      description: data.weather[0].description,
+      description:data.weather[0].description,
       icon: data.weather[0].icon,
       error: "",
-      showCard:true
+      showCard:true,
      });
     } else {
     console.log(data); 
     this.setState({
+      lat: "",
+      long: "",
       temperature: "",
       city:"",
-      state:"",
       humidity: "",
       description: "",
       forecastCard: "",
       icon: "",
-      error: "Please Enter the Full Names of the City and State"
+      radar: "",
+      error: "Please Enter a Valid Zip Code"
      });
     }
   }
@@ -76,22 +88,31 @@ class WeatherApp extends React.Component {
 
   render() {
     return(
-      <div className= {this.state.isItDaytime ? 'background-day' : 'background-night'} >
-        <Titles />
-        <Form getWeather={this.getWeather} />
-        <Weather 
-        city={this.state.city}
-        state={this.state.state}
-        error={this.state.error}
-        />
-        <div className= {this.state.showCard ? 'show-card' : 'no-card'}>
-        <ForecastCards
-        icon={this.state.icon}
-        temperature={this.state.temperature} 
-        humidity={this.state.humidity}
-        description={this.state.description}        
-        />
-        </div>
+      <div  className= {this.state.isItDaytime ? 'background-day' : 'background-night'}>
+          <div className="row">
+            <div className="text-box-left">
+                <Titles />
+                <Form getWeather={this.getWeather} />
+                <Weather 
+                
+                error={this.state.error}
+                />
+            </div>
+            <Fade right>
+              <div className={this.state.showCard ? 'show-card' : 'no-card'}>
+                    <div>
+                    <ForecastCards
+                    city={this.state.city}
+                    icon={this.state.icon}
+                    temperature={this.state.temperature} 
+                    humidity={this.state.humidity}
+                    description={this.state.description}        
+                    />
+                    </div>
+              </div>
+           </Fade>
+          
+           </div>
       </div>
     );
   }
