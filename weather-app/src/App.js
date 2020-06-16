@@ -5,8 +5,8 @@ import Weather from "./components/Weather-Folder/Weather";
 import ForecastCards from "./components/Forecast-Card-Folder/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import Radar from "./components/Radar.js";
 import Fade from 'react-reveal/Fade';
+import { auto } from "async";
 
 
 const API_KEY = "3d790876479461764d53a954986abf1d";
@@ -88,13 +88,13 @@ class WeatherApp extends React.Component {
 
   render() {
     return(
-      <div className= {this.state.isItDaytime ? 'background-day' : 'background-night'}>
+      <div  className= {this.state.isItDaytime ? 'background-day' : 'background-night'}>
           <div className="row">
             <div className="text-box-left">
                 <Titles />
                 <Form getWeather={this.getWeather} />
                 <Weather 
-                city={this.state.city}
+                
                 error={this.state.error}
                 />
             </div>
@@ -102,12 +102,12 @@ class WeatherApp extends React.Component {
               <div className={this.state.showCard ? 'show-card' : 'no-card'}>
                     <div>
                     <ForecastCards
+                    city={this.state.city}
                     icon={this.state.icon}
                     temperature={this.state.temperature} 
                     humidity={this.state.humidity}
                     description={this.state.description}        
                     />
-                    <Radar />
                     </div>
               </div>
            </Fade>

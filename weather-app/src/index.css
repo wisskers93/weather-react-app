@@ -1,14 +1,23 @@
 
 .background-day {
   background-image: url('https://i.imgur.com/5LaaFse.jpg');
-  height: 100vh;
-  width: 100%;
+  background-size: cover;
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
 }
 
 .background-night {
   background-image: url('https://external-preview.redd.it/JRbrwhI6yMhJiomdFCNJn6IH399Uo7SbHusOnXT8-uM.jpg?auto=webp&s=12a668dff56e9993dd27065ae673189b37189084'); 
-  height: 100vh;
+  height: 100%;
   width: 100%;
+  position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
 }
 
 .show-card {
@@ -16,9 +25,12 @@
   display: inline;
   float:left;
   background:rgba(28, 27, 36, 0.9);
-  width: 50%;
-  height: 100vw;
   align-content: center;
+  position: fixed;
+    width: 50%;
+    height: 100%;
+    right: 0;
+    top: 0;
 }
 
 .no-card {
@@ -29,7 +41,7 @@
 .text-box-left{
   float: left;
   width: 50%;
-  height: 100vw;
+  height: 100%;
 }
 
 .row:after {

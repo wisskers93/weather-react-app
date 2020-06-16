@@ -1,13 +1,10 @@
-.searchDiv{
-    margin: 40px;
-}
 
 .searchbox_1{
     background-color: #fffbf8;
-    opacity:.85;
     padding:10px;
-    width:328px;
-    margin: 50px 10px;
+    max-width:60%;
+    min-width: 50%;
+    margin-left: 7vmin;
     -webkit-box-sizing:border-box;
     -moz-box-sizing:border-box;
     box-sizing:border-box;
@@ -29,11 +26,12 @@
     0 2px 4px 2px rgba(255, 255, 255, 0.83) inset;
     }
     .search_1{
-    width:250px;
-    height:30px;
+    max-width:80%;
+    min-width: 80%;
     padding-left:15px;
     border-radius:6px;
     border:none;
+    float: inherit;
     color:#0F0D0D;;
     font-weight:500;
     background-color:#E2EFF7;;
@@ -60,8 +58,9 @@
     0 15px 15px 0 rgba(41, 41, 41, 0.09) inset;
     }
     .submit_1{
-    width:50px;
-    height:30px;
+    min-width: 20%;
+    max-width: 20%;
+    float: right;
     background-image:url(search-icon.png);
     background-repeat: no-repeat;
     background-position: 20px 2px;
