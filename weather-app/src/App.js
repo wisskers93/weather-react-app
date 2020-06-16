@@ -1,8 +1,8 @@
 import React from "react";
-import Titles from "./components/Titles";
+import Titles from "./components/Title-Folder/Titles";
 import Form from "./components/Form-Folder/Form";
-import Weather from "./components/Weather";
-import ForecastCards from "./components/Forecast-Cards";
+import Weather from "./components/Weather-Folder/Weather";
+import ForecastCards from "./components/Forecast-Card-Folder/Forecast-Cards";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Radar from "./components/Radar.js";
