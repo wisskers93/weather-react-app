@@ -87,23 +87,28 @@ class WeatherApp extends React.Component {
 
   render() {
     return(
-      <div className= {this.state.isItDaytime ? 'background-day' : 'background-night'} >
-        <Titles />
-        <Form getWeather={this.getWeather} />
-        <Weather 
-        city={this.state.city}
-       
-        error={this.state.error}
-        />
-        <div className= {this.state.showCard ? 'show-card' : 'no-card'}>
-        <ForecastCards
-        icon={this.state.icon}
-        temperature={this.state.temperature} 
-        humidity={this.state.humidity}
-        description={this.state.description}        
-        />
-        <Radar />
-        </div>
+      <div className= {this.state.isItDaytime ? 'background-day' : 'background-night'}>
+          <div className="row">
+            <div className="text-box-left">
+                <Titles />
+                <Form getWeather={this.getWeather} />
+                <Weather 
+                city={this.state.city}
+                error={this.state.error}
+                />
+            </div>
+            <div className="text-box-right">
+                  <div className= {this.state.showCard ? 'show-card' : 'no-card'}>
+                  <ForecastCards
+                  icon={this.state.icon}
+                  temperature={this.state.temperature} 
+                  humidity={this.state.humidity}
+                  description={this.state.description}        
+                  />
+                  <Radar />
+                  </div>
+              </div>
+           </div>
       </div>
     );
   }
