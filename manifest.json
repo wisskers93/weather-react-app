@@ -1,6 +1,6 @@
 {
-  "short_name": "5-Day Forecast",
-  "name": "Your Local Weather",
+  "short_name": "The Weather is...",
+  "name": "Weather App",
   "icons": [
     {
       "src": "favicon.ico",
