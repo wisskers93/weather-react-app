@@ -1,10 +1,10 @@
 import React from "react";
+import "./Weather.css";
 
 class Weather extends React.Component{
     render(){
         return(
-            <div>
-            { this.props.city && <p>Location: { this.props.city }, {this.props.state}</p>}   
+            <div className="your-weather">
             {this.props.error && <p>{this.props.error}</p>}
             </div>
         );
